@@ -58,7 +58,7 @@ npm run dev
 
 Crea un archivo `.env` en la carpeta `backend` (opcional):
 ```env
-PORT=5001
+PORT=5000
 NODE_ENV=development
 ```
 
