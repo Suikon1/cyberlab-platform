@@ -242,7 +242,7 @@ chore: tareas de mantenimiento
 
 - **Desarrollador**: [Suikon1](https://github.com/Suikon1)
 - **Issues**: [GitHub Issues](https://github.com/Suikon1/cyberlab-platform/issues)
-- **Universidad**: Universidad de Viña del Mar
+- **Universidad**: Duoc UC Sede Viña Del Mar
 
 ## 📄 Licencia
 
