@@ -1,6 +1,6 @@
 # 🔒 CyberTrack Viña - Plataforma de Laboratorio de Ciberseguridad
 
-Una plataforma web moderna para la gestión y distribución de máquinas virtuales de práctica en ciberseguridad desarrollada para el laboratorio de la Universidad de Viña del Mar.
+Una plataforma web moderna para la gestión y distribución de máquinas virtuales de práctica en ciberseguridad desarrollada para el laboratorio del Track De Ciberseguridad. Duoc UC Viña Del Mar
 
 ![CyberTrack](https://img.shields.io/badge/CyberTrack-Viña-cyan?style=for-the-badge)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
