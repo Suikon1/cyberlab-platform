@@ -79,11 +79,11 @@ cyberlab-platform/
 │   ├── server.js                  # Servidor principal con todas las rutas
 │   ├── machines/                  # 📁 Archivos ZIP de máquinas (*.zip)
 │   ├── uploads/                   # 📁 Archivos subidos por usuarios
-│   ├── package.json              # Dependencias del backend
+│   ├── package.json               # Dependencias del backend
 │   └── .env                       # Variables de entorno (opcional)
 ├── 📂 frontend/                   # Aplicación Next.js + React
 │   ├── src/
-│   │   ├── 📂 components/         # Componentes React reutilizables
+│   │   ├── 📂 components/        # Componentes React reutilizables
 │   │   │   ├── Header/           # Navegación principal
 │   │   │   ├── MachineCard/      # Tarjetas de máquinas virtuales
 │   │   │   ├── FilterBar/        # Barra de filtros y búsqueda
