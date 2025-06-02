@@ -37,7 +37,7 @@ cd backend
 npm install
 
 # Crear archivo de entorno (opcional)
-echo "PORT=5001" > .env
+echo "PORT=5000" > .env
 
 # Iniciar servidor de desarrollo
 npm run dev
