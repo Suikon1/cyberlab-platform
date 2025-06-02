@@ -1,7 +1,7 @@
 🔒 CyberLab Platform
 
 Plataforma web moderna para distribución de máquinas Docker de ciberseguridad
-Inspirada en CIBERTRACK VIÑA para talleres y laboratorios de seguridad informática
+Inspirada en TRACK CIBERSEGURIDAD para talleres y laboratorios de seguridad informática
 
 Version 1.0 | MIT License | Node.js + Next.js
 
@@ -255,7 +255,7 @@ Railway: Despliegue automático desde GitHub
 
 
 🧪 Máquinas Incluidas
-MáquinaDificultadDescripciónTagsanonymouspingu🟡 IntermedioTécnicas de anonimato y steganografíaOSINT, Steganography, Networkdance-samba🟢 FácilExplotación web con temática brasileñaWeb, SQLi, File Uploadinclusion🟡 IntermedioInclusión de archivos locales y remotosLFI, RFI, Linuxmirame🟢 FácilVulnerabilidades básicas de enumeraciónBeginner, Web, Enumerationpinguinazo🔴 AvanzadoMúltiples vectores de ataque complejosAdvanced, Multi-vector, Exploitationwhoiam🟡 IntermedioEscalada de privilegios en LinuxPrivilege Escalation, Linux, Identity
+Anonymouspingu🟢 Dance-samba🟡 Inclusion🟡 Mirame🟡 Pinguinazo🟡 Whoiam🟢 
 
 🤝 Contribución
 ¡Las contribuciones son bienvenidas! 🎉
@@ -280,16 +280,12 @@ Para reportar bugs o solicitar features, usa los Issues de GitHub.
  🏆 Sistema de puntuación
  💬 Comentarios en writeups
 
-
-📄 Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
-
 👨‍💻 Autor
 Suikon1 - Desarrollo completo - @Suikon1
 
 🙏 Agradecimientos
 
-🎨 Inspiración: CIBERTRACK VIÑA
+🎨 Inspiración: TRACK CIBERSEGURIDAD VINA
 🐳 Máquinas Docker: dockerlabs.es - Fuente de las máquinas de ciberseguridad
 🛠️ Herramientas: Next.js, Express.js, Tailwind CSS
 🎨 Iconos: Lucide React
@@ -305,3 +301,4 @@ Proyecto: cyberlab-platform
 <div align="center">
 🌟 ¡Si te gusta el proyecto, dale una estrella!
 Hecho con ❤️ para la comunidad de ciberseguridad
+</div>
