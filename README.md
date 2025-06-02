@@ -68,7 +68,7 @@ NODE_ENV=development
 
 ### URLs de Desarrollo
 - **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:5001
+- **Backend API**: http://localhost:5000
 - **Panel Admin**: http://localhost:3000 (click en "Login" → usar credenciales admin)
 
 ## 📁 Estructura del Proyecto
