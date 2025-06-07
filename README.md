@@ -240,7 +240,8 @@ chore: tareas de mantenimiento
 
 ## 📞 Soporte
 
-- **Desarrollador**: [Suikon1](https://github.com/Suikon1)
+- **Desarrolladores**: [Suikon1] (https://github.com/Suikon1)
+                       [Auxinh0] 
 - **Issues**: [GitHub Issues](https://github.com/Suikon1/cyberlab-platform/issues)
 - **Universidad**: Duoc UC Sede Viña Del Mar
 
