@@ -52,7 +52,7 @@ app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static('uploads'))
 
-// DATOS EN MEMORIA (sin base de datos) - SIN TAMAÑOS HARDCODEADOS
+// DATOS EN MEMORIA (sin base de datos) - CON TAMAÑOS DINÁMICOS
 let machines = [
   {
     id: 1,
@@ -429,15 +429,15 @@ app.post('/api/machines/:id/writeup', (req, res) => {
 // RUTAS DE DESCARGA - VERSIÓN MEJORADA
 // =====================================================
 
-// Descargar máquina (ruta original)
+// Descargar máquina (ruta mejorada con mejor manejo de errores)
 app.get('/api/machines/:name/download', async (req, res) => {
   const machineName = req.params.name;
   
   try {
-    // Sanitize machine name to prevent path traversal
+    // Sanitizar nombre para prevenir path traversal
     const sanitizedName = machineName.replace(/[^a-zA-Z0-9\-_]/g, '');
     
-    // Check multiple possible locations for the file
+    // Verificar múltiples ubicaciones posibles para el archivo
     const possiblePaths = [
       path.join(__dirname, 'uploads', 'machines', `${sanitizedName}.zip`),
       path.join(__dirname, 'docker-machines', sanitizedName, `${sanitizedName}.zip`),
@@ -447,7 +447,7 @@ app.get('/api/machines/:name/download', async (req, res) => {
     let filePath = null;
     let stats = null;
     
-    // Find the file in any of the possible locations
+    // Buscar el archivo en cualquiera de las ubicaciones posibles
     for (const possiblePath of possiblePaths) {
       if (fs.existsSync(possiblePath)) {
         filePath = possiblePath;
@@ -465,17 +465,17 @@ app.get('/api/machines/:name/download', async (req, res) => {
       });
     }
     
-    // Log the download attempt
+    // Log del intento de descarga
     console.log(`📥 Iniciando descarga: ${machineName}.zip (${(stats.size / 1024 / 1024).toFixed(2)} MB)`);
     console.log(`📂 Archivo ubicado en: ${filePath}`);
     
-    // Set appropriate headers for file download
+    // Configurar headers apropiados para descarga de archivo
     res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName}.zip"`);
     res.setHeader('Content-Type', 'application/zip');
     res.setHeader('Content-Length', stats.size);
     res.setHeader('Cache-Control', 'no-cache');
     
-    // Create read stream and handle errors
+    // Crear stream de lectura y manejar errores
     const fileStream = fs.createReadStream(filePath);
     
     fileStream.on('error', (error) => {
@@ -492,7 +492,7 @@ app.get('/api/machines/:name/download', async (req, res) => {
       console.log(`✅ Descarga completada: ${machineName}.zip`);
     });
     
-    // Pipe the file to response
+    // Enviar archivo como stream
     fileStream.pipe(res);
     
   } catch (error) {
@@ -602,10 +602,10 @@ app.get('/api/machines/:name/check', (req, res) => {
 });
 
 // =====================================================
-// RUTAS DE INFORMACIÓN Y ARCHIVOS (NUEVAS)
+// RUTAS DE INFORMACIÓN Y ARCHIVOS
 // =====================================================
 
-// Health check (nueva ruta con /api/)
+// Health check mejorado
 app.get('/api/health', (req, res) => {
   const vmsExists = fs.existsSync(machinesDir);
   const uploadsExists = fs.existsSync(uploadsDir);
@@ -637,7 +637,21 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Listar archivos disponibles (nueva ruta)
+// Health check original (mantener compatibilidad)
+app.get('/health', (req, res) => {
+  updateMachinesSizes();
+  const stats = getFilesStatistics();
+  
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    machines: stats.totalMachines,
+    availableMachines: stats.availableMachines,
+    uploadsDir: uploadsDir
+  });
+});
+
+// Listar archivos disponibles
 app.get('/api/files', (req, res) => {
   try {
     if (!fs.existsSync(machinesDir)) {
@@ -728,19 +742,25 @@ app.post('/api/machines/refresh-sizes', (req, res) => {
   }
 });
 
-// Health check original (mantener compatibilidad)
-app.get('/health', (req, res) => {
-  updateMachinesSizes();
-  const stats = getFilesStatistics();
+// =====================================================
+// FUNCIONES DE UTILIDAD
+// =====================================================
+
+// Asegurar que los directorios de uploads existen
+const ensureDirectoriesExist = () => {
+  const directories = [
+    path.join(__dirname, 'uploads'),
+    path.join(__dirname, 'uploads', 'machines'),
+    path.join(__dirname, 'machines')
+  ];
   
-  res.json({ 
-    status: 'OK', 
-    timestamp: new Date().toISOString(),
-    machines: stats.totalMachines,
-    availableMachines: stats.availableMachines,
-    uploadsDir: uploadsDir
+  directories.forEach(dir => {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+      console.log(`📁 Directorio creado: ${dir}`);
+    }
   });
-});
+};
 
 // =====================================================
 // MANEJO DE ERRORES
@@ -763,30 +783,10 @@ app.use((error, req, res, next) => {
 })
 
 // =====================================================
-// FUNCIONES DE UTILIDAD
-// =====================================================
-
-// Ensure uploads directories exist
-const ensureDirectoriesExist = () => {
-  const directories = [
-    path.join(__dirname, 'uploads'),
-    path.join(__dirname, 'uploads', 'machines'),
-    path.join(__dirname, 'machines')
-  ];
-  
-  directories.forEach(dir => {
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-      console.log(`📁 Directorio creado: ${dir}`);
-    }
-  });
-};
-
-// =====================================================
 // INICIAR SERVIDOR
 // =====================================================
 
-// Call this when starting the server
+// Llamar al iniciar el servidor
 ensureDirectoriesExist();
 
 // Iniciar servidor
