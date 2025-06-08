@@ -1,0 +1,165 @@
+# =============================================================================
+# .gitignore para CyberTrack Viña - Plataforma de Laboratorio de Ciberseguridad
+# =============================================================================
+
+# Dependencies - NUNCA SUBIR
+node_modules/
+*/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Environment Variables - INFORMACIÓN SENSIBLE
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
+
+# Database Files - PUEDEN SER MUY GRANDES
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+database/
+db/
+
+# MySQL specific
+*.sql
+mysql-data/
+
+# Build Outputs
+build/
+dist/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+
+# Cache Directories
+.cache/
+.npm/
+.eslintcache
+.parcel-cache/
+.sass-cache/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime Data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage Directory
+coverage/
+*.lcov
+.nyc_output
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Temporary Files
+tmp/
+temp/
+.tmp/
+
+# Large Files - NO SUBIR ARCHIVOS PESADOS
+*.zip
+*.rar
+*.tar.gz
+*.7z
+*.iso
+*.dmg
+*.exe
+
+# VM Files
+*.vmdk
+*.vdi
+*.vhd
+*.ova
+
+# Security Keys - MUY IMPORTANTE
+*.pem
+*.key
+*.crt
+*.p12
+id_rsa*
+id_ed25519*
+
+# Backup Files
+*.bak
+*.backup
+*.orig
+
+# Frontend specific
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Backend specific
+backend/node_modules/
+backend/uploads/
+backend/temp/
+
+# Documentation builds
+docs/_build/
+docs/.doctrees/
+
+# Python (si usas Python)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Java (si usas Java)
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# C# (si usas .NET)
+bin/
+obj/
+*.user
+*.suo
+
+# Ignore specific to CyberLab platform
+machines/*/data/
+virtual-machines/
+lab-data/
+student-submissions/
