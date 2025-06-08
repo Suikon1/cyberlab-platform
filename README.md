@@ -5,6 +5,7 @@ Una plataforma web moderna para la gestión y distribución de máquinas virtual
 ![CyberTrack](https://img.shields.io/badge/CyberTrack-Viña-cyan?style=for-the-badge)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![Database](https://img.shields.io/badge/MySQL-Ready-orange?style=for-the-badge)
 
 ## ✨ Características Principales
 
@@ -60,7 +61,19 @@ Crea un archivo `.env` en la carpeta `backend` (opcional):
 ```env
 PORT=5000
 NODE_ENV=development
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=cyberlab
+DB_USER=root
+DB_PASSWORD=tu_password
 ```
+
+### Configuración de Base de Datos (MySQL) ✅
+**¡La base de datos MySQL ya está configurada y funcionando!**
+
+1. **MySQL Server** y **MySQL Workbench 8.0 CE** están instalados
+2. **Base de datos `cyberlab`** está creada y operativa
+3. **Variables de entorno** están configuradas correctamente
 
 ### Credenciales de Administrador
 - **Usuario**: `admin`
@@ -76,32 +89,49 @@ NODE_ENV=development
 ```
 cyberlab-platform/
 ├── 📂 backend/                    # Servidor Node.js + Express
-│   ├── server.js                  # Servidor principal con todas las rutas
-│   ├── machines/                  # 📁 Archivos ZIP de máquinas (*.zip)
-│   ├── uploads/                   # 📁 Archivos subidos por usuarios
-│   ├── package.json               # Dependencias del backend
-│   └── .env                       # Variables de entorno (opcional)
-├── 📂 frontend/                   # Aplicación Next.js + React
-│   ├── src/
-│   │   ├── 📂 components/        # Componentes React reutilizables
-│   │   │   ├── Header/           # Navegación principal
-│   │   │   ├── MachineCard/      # Tarjetas de máquinas virtuales
-│   │   │   ├── FilterBar/        # Barra de filtros y búsqueda
-│   │   │   ├── AdminPanel/       # Panel de administración
-│   │   │   └── LoginModal/       # Modal de autenticación
-│   │   ├── 📂 contexts/          # Context API de React
-│   │   │   └── AuthContext.js    # Manejo de autenticación
-│   │   ├── 📂 pages/             # Páginas de Next.js
-│   │   └── 📂 styles/            # Estilos globales
+│   ├── 📂 controllers/           # Controladores de lógica de negocio
+│   ├── 📂 machines/              # 📁 Archivos ZIP de máquinas (*.zip)
+│   ├── 📂 middleware/            # Middlewares personalizados
+│   ├── 📂 models/                # Modelos de datos y esquemas
+│   ├── 📂 public/                # Archivos estáticos públicos
+│   ├── 📂 routes/                # Definición de rutas de la API
+│   ├── 📂 uploads/               # 📁 Archivos subidos por usuarios
+│   ├── server.js                 # Servidor principal con todas las rutas
+│   ├── create-test-files.js      # Utilidad para crear archivos de prueba
+│   ├── package.json              # Dependencias del backend
+│   ├── package-lock.json         # Lock de dependencias
+│   └── .env                      # Variables de entorno (opcional)
+├── 📂 frontend/                  # Aplicación Next.js + React
+│   ├── 📂 components/            # Componentes React reutilizables
+│   │   ├── Header/               # Navegación principal
+│   │   ├── MachineCard/          # Tarjetas de máquinas virtuales
+│   │   ├── FilterBar/            # Barra de filtros y búsqueda
+│   │   ├── AdminPanel/           # Panel de administración
+│   │   ├── LoginModal/           # Modal de autenticación
+│   │   └── UploadModal/          # Modal de subida de archivos
+│   ├── 📂 hooks/                 # Custom React Hooks
+│   ├── 📂 pages/                 # Páginas de Next.js
+│   ├── 📂 styles/                # Estilos globales
+│   ├── 📂 utils/                 # Funciones utilitarias
+│   ├── next.config.js            # Configuración de Next.js
 │   ├── package.json              # Dependencias del frontend
+│   ├── package-lock.json         # Lock de dependencias
+│   ├── postcss.config.js         # Configuración de PostCSS
 │   └── tailwind.config.js        # Configuración de Tailwind CSS
 ├── 📂 docker-machines/           # Código fuente de máquinas virtuales
 │   ├── anonymouspingu/           # Máquina de steganografía
 │   ├── dance-samba/              # Máquina de explotación web
 │   ├── mirage/                   # Máquina de red y pentesting
 │   └── whoiam/                   # Máquina de escalada de privilegios
+├── 📂 MySQL/                     # Configuración y datos de MySQL
+│   └── Local/                    # Base de datos local
 ├── 📂 docs/                      # Documentación del proyecto
+├── .env                          # Variables de entorno globales
 ├── .gitignore                    # Archivos excluidos de Git
+├── docker-compose.yml            # Configuración de Docker Compose
+├── LICENSE                       # Licencia MIT del proyecto
+├── package.json                  # Dependencias principales del proyecto
+├── package-lock.json             # Lock de dependencias principales
 └── README.md                     # Este archivo
 ```
 
@@ -154,8 +184,13 @@ cyberlab-platform/
 ### Backend
 - **Node.js** - Entorno de ejecución
 - **Express.js** - Framework web minimalista
+- **MySQL** - Base de datos relacional (implementada)
 - **CORS** - Manejo de políticas de origen cruzado
 - **Multer** - Manejo de archivos multipart
+
+### Base de Datos
+- **MySQL Workbench 8.0 CE** - Herramienta de administración de base de datos
+- **MySQL Server** - Sistema de gestión de base de datos en producción
 
 ### Herramientas de Desarrollo
 - **ESLint** - Linter de JavaScript
@@ -220,11 +255,11 @@ chore: tareas de mantenimiento
 ## 📊 Roadmap
 
 ### Versión 1.1 (Próximamente)
-- [ ] Base de datos MongoDB/PostgreSQL
-- [ ] Sistema de usuarios registrados
+- [ ] Sistema de usuarios registrados con roles
 - [ ] Comentarios en máquinas
 - [ ] Sistema de rating/calificaciones
-- [ ] Dashboard de estadísticas
+- [ ] Dashboard de estadísticas avanzadas
+- [ ] Historial de descargas por usuario
 
 ### Versión 1.2 (Futuro)
 - [ ] API REST completa
@@ -237,7 +272,7 @@ chore: tareas de mantenimiento
 
 - Los archivos ZIP deben ubicarse manualmente en `backend/machines/`
 - El sistema de autenticación es básico (sin JWT real)
-- No hay persistencia de datos (solo memoria)
+- Subida de archivos requiere configuración de permisos del servidor
 
 ## 📞 Soporte
 
