@@ -99,7 +99,7 @@ cyberlab-platform/
 │   ├── anonymouspingu/           # Máquina de steganografía
 │   ├── dance-samba/              # Máquina de explotación web
 │   ├── mirage/                   # Máquina de red y pentesting
-│   └── wholam/                   # Máquina de escalada de privilegios
+│   └── whoiam/                   # Máquina de escalada de privilegios
 ├── 📂 docs/                      # Documentación del proyecto
 ├── .gitignore                    # Archivos excluidos de Git
 └── README.md                     # Este archivo
@@ -107,14 +107,14 @@ cyberlab-platform/
 
 ## 🎮 Máquinas Disponibles
 
-| Nombre | Dificultad |
-|--------|------------|
-| **anonymouspingu** | 🟢 Fácil |
-| **dance-samba** | 🟡 Intermedio |
-| **inclusion** | 🟡 Intermedio |
-| **mirame** | 🟡 Intermedio |
-| **pinguinazo** | 🟡 Intermedio |
-| **whoiam** | 🟢 Fácil |
+| Nombre | Dificultad | Tags Principales |
+|--------|------------|------------------|
+| **anonymouspingu** | 🟡 Intermedio | Steganography, OSINT, Network |
+| **dance-samba** | 🟢 Fácil | Web, SQLi, File Upload |
+| **inclusion** | 🟡 Intermedio | File Inclusion, LFI, RFI, Linux |
+| **mirame** | 🟢 Fácil | Beginner, Web, Enumeration |
+| **pinguinazo** | 🔴 Avanzado | Advanced, Multi-vector, Exploitation |
+| **whoiam** | 🟡 Intermedio | Privilege Escalation, Linux, Identity |
 
 ## 🛠️ Funcionalidades Técnicas
 
@@ -183,9 +183,10 @@ cyberlab-platform/
 ### Medidas Implementadas
 - Sanitización de nombres de archivo
 - Verificación de roles de usuario
-- Exclusión de archivos sensibles en Git
+- Exclusión de archivos sensibles en Git (.gitignore)
 - Validación de entrada de usuarios
 - Prevención de path traversal
+- Límites de tamaño de archivo (500MB)
 
 ## 🚧 Desarrollo y Contribución
 
@@ -240,7 +241,7 @@ chore: tareas de mantenimiento
 
 ## 📞 Soporte
 
-- **Desarrolladores**: [Suikon1] (https://github.com/Suikon1) y [Auxinh0] (https://github.com/sudoaux801)
+- **Desarrolladores**: [Suikon1](https://github.com/Suikon1) y [Auxinh0](https://github.com/sudoaux801)
 - **Issues**: [GitHub Issues](https://github.com/Suikon1/cyberlab-platform/issues)
 - **Universidad**: Duoc UC Sede Viña Del Mar
 
