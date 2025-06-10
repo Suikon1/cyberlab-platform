@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # =============================================================================
 # .gitignore para CyberTrack Viña - Plataforma de Laboratorio de Ciberseguridad
 # =============================================================================
@@ -163,3 +164,6 @@ machines/*/data/
 virtual-machines/
 lab-data/
 student-submissions/
+=======
+node_modules
+>>>>>>> 79ebd9612db1fe0fa3b5d1bb1f8b9a2f19d96c57
