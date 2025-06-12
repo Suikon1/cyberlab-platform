@@ -63,7 +63,7 @@ PORT=5000
 NODE_ENV=development
 DB_HOST=localhost
 DB_PORT=3306
-DB_NAME=cyberlab
+DB_NAME=track25
 DB_USER=root
 DB_PASSWORD=tu_password
 ```
